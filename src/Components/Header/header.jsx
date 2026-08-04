@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Moon, Sun } from 'lucide-react'
 import { useApp } from '../../context/ResumeContext'
-import "./header.css"
+import "./header.css";
 
 function Header() {
   const { currentUser, logout, darkMode, toggleDarkMode } = useApp()
