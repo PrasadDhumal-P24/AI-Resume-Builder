@@ -23,36 +23,51 @@ function Skills({ onNext, onPrev }) {
 
         <div className="form__section-title">
           <Code size={24} color="var(--primary)" />
-          Skills
+          Skills & More
         </div>
         <p className="form__section-subtitle">
-          Showcase all your technical and professional skills
+          Showcase all your skills, hobbies and certifications
         </p>
 
         <div className="form__tip">
           <Sparkles size={16} />
           <span>
-            <strong>AI Tip:</strong> List comma-separated skills — 
-            "React, JavaScript, CSS" and AI will format them into 
-            a clean, recruiter-friendly skills section!
+            <strong>AI Tip:</strong> List comma-separated values —
+            AI will format them professionally!
           </span>
         </div>
 
         <div className="form__grid">
+
+          {/* Programming Languages - NEW */}
+          <div className="form__field form__grid--full">
+            <label>Programming Languages</label>
+            <textarea
+              className="form__input"
+              name="programmingLangs"
+              placeholder="Ex: C, C++, Java, Python, JavaScript"
+              value={skills.programmingLangs || ''}
+              onChange={handleChange}
+              rows={2}
+            />
+            <span className="form__hint">
+              💡 Core programming languages you know
+            </span>
+          </div>
 
           <div className="form__field form__grid--full">
             <label>Technical Skills <span>*</span></label>
             <textarea
               className="form__input"
               name="technical"
-              placeholder="Ex: HTML, CSS, JavaScript, React.js, Node.js, Python, SQL, MongoDB"
+              placeholder="Ex: DSA, DBMS, OS, Computer Networks, OOP"
               value={skills.technical}
               onChange={handleChange}
-              rows={3}
+              rows={2}
               required
             />
             <span className="form__hint">
-              💡 Programming languages, frameworks, and libraries
+              💡 Core CS subjects and concepts
             </span>
           </div>
 
@@ -61,22 +76,19 @@ function Skills({ onNext, onPrev }) {
             <textarea
               className="form__input"
               name="tools"
-              placeholder="Ex: Git, GitHub, VS Code, Figma, Postman, Firebase, AWS, Docker"
+              placeholder="Ex: Git, GitHub, VS Code, Figma, Postman, Firebase"
               value={skills.tools}
               onChange={handleChange}
-              rows={3}
+              rows={2}
             />
-            <span className="form__hint">
-              💡 Developer tools, platforms, and software
-            </span>
           </div>
 
           <div className="form__field">
-            <label>Soft Skills</label>
+            <label>Soft Skills / Strengths</label>
             <textarea
               className="form__input"
               name="soft"
-              placeholder="Ex: Team Leadership, Problem Solving, Effective Communication, Time Management"
+              placeholder="Ex: Leadership, Problem Solving, Communication"
               value={skills.soft}
               onChange={handleChange}
               rows={3}
@@ -90,6 +102,30 @@ function Skills({ onNext, onPrev }) {
               name="languages"
               placeholder="Ex: English (Fluent), Hindi (Native), Marathi (Native)"
               value={skills.languages}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
+
+          <div className="form__field">
+            <label>Hobbies & Interests</label>
+            <textarea
+              className="form__input"
+              name="hobbies"
+              placeholder="Ex: Reading, Coding, Cricket, Photography, Travelling"
+              value={skills.hobbies || ''}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
+
+          <div className="form__field">
+            <label>Certificates & Courses</label>
+            <textarea
+              className="form__input"
+              name="certificates"
+              placeholder="Ex: React JS - Udemy (2024), Python Bootcamp - Coursera (2023)"
+              value={skills.certificates || ''}
               onChange={handleChange}
               rows={3}
             />

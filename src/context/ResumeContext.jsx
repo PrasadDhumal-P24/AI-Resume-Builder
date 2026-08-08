@@ -34,7 +34,10 @@ export function AppProvider({ children }) {
       technical: '',
       soft: '',
       languages: '',
-      tools: ''
+      tools: '',
+      hobbies: '',
+      certificates: '',
+      programmingLangs: ''
     },
     projects: []
   })

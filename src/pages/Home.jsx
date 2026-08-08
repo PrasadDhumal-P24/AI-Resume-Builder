@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import FeedbackSection from '../Components/Feedback/FeedbackSection'
 
 function Home() {
   return (
@@ -223,6 +224,18 @@ function Home() {
             <p>Preview your beautiful resume and download it instantly as PDF</p>
           </div>
         </div>
+      </section>
+      {/* ===== FEEDBACK ===== */}
+      <section className="feedback">
+        <div className="features__header">
+          <h2 className="features__title">
+            What Users Say <span>About ResumeAI?</span>
+          </h2>
+          <p className="features__subtitle">
+            Real feedback from real users
+          </p>
+        </div>
+        <FeedbackSection />
       </section>
 
     </div>
