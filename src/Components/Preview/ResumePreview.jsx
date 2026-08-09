@@ -11,7 +11,21 @@ function ResumePreview() {
 
   const { toPDF, targetRef } = usePDF({
     filename: `${personalInfo.fullName || 'resume'}_resume.pdf`,
-    page: { margin: 8 }
+    page: {
+      margin: 5,
+      format: 'A4',
+      orientation: 'portrait'
+    },
+    canvas: {
+      mimeType: 'image/jpeg',
+      qualityRatio: 1
+    },
+    overrides: {
+      pdf: {
+        compress: true
+      },
+      canvas: { useCORS: true }
+    }
   })
 
   const handlePhotoUpload = (e) => {

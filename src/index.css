@@ -636,3 +636,34 @@ body.dark-mode .features__title {
 body.dark-mode .features__subtitle {
   color: #9CA3AF !important;
 }
+/* Resume Preview Mobile */
+@media (max-width: 768px) {
+  .resume__paper {
+    padding: 0.8rem !important;
+    font-size: 0.65rem !important;
+  }
+  .resume__two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .resume__col-right {
+    border-left: none !important;
+    border-top: 1px solid #ddd !important;
+    padding-left: 0 !important;
+    padding-top: 0.5rem !important;
+  }
+  .resume__name {
+    font-size: 1rem !important;
+  }
+  .resume__photo-box {
+    width: 70px !important;
+    height: 85px !important;
+  }
+  .resume__photo-img {
+    width: 70px !important;
+    height: 85px !important;
+  }
+  .resume__photo-empty {
+    width: 70px !important;
+    height: 85px !important;
+  }
+}
