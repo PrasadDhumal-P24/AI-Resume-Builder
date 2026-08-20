@@ -23,13 +23,7 @@ function AIEnhancer() {
 
     if (!key) {
       setStatus('error')
-      setCurrentTask('API key not found in .env file!')
-      return
-    }
-
-    if (key.length < 10) {
-      setStatus('error')
-      setCurrentTask('API key seems invalid — check .env file!')
+      setCurrentTask('❌ API key not found! Check your .env file — VITE_GEMINI_API_KEY chahije.')
       return
     }
 
@@ -39,52 +33,54 @@ function AIEnhancer() {
 
       if (resumeData.personalInfo.summary) {
         setCurrentTask('✨ Enhancing your professional summary...')
-        const enhancedSummary = await enhanceSummary(
+        const enhanced = await enhanceSummary(
           resumeData.personalInfo.summary,
           resumeData.personalInfo.fullName
         )
         updateResumeData('personalInfo', {
           ...resumeData.personalInfo,
-          summary: enhancedSummary
+          summary: enhanced
         })
       }
 
       if (resumeData.experience.some(e => e.company)) {
         setCurrentTask('💼 Enhancing work experience...')
-        const enhancedExp = await enhanceExperience(
+        const enhanced = await enhanceExperience(
           resumeData.experience.filter(e => e.company)
         )
-        updateResumeData('experience', enhancedExp)
+        updateResumeData('experience', enhanced)
       }
 
       if (resumeData.projects.some(p => p.name)) {
         setCurrentTask('🚀 Enhancing project descriptions...')
-        const enhancedProj = await enhanceProjects(
+        const enhanced = await enhanceProjects(
           resumeData.projects.filter(p => p.name)
         )
-        updateResumeData('projects', enhancedProj)
+        updateResumeData('projects', enhanced)
       }
 
       if (resumeData.skills.technical) {
-        setCurrentTask('⚡ Formatting skills section...')
-        const enhancedSkills = await enhanceSkills(resumeData.skills)
-        updateResumeData('skills', enhancedSkills)
+        setCurrentTask('⚡ Formatting skills...')
+        const enhanced = await enhanceSkills(resumeData.skills)
+        updateResumeData('skills', enhanced)
       }
 
       setStatus('success')
-      setCurrentTask('Your resume has been AI-enhanced!')
+      setCurrentTask('Your resume has been AI-enhanced! 🎉')
       setEnhanced(true)
 
     } catch (error) {
-      console.error('AI Error:', error)
+      console.error('Enhancement error:', error)
       setStatus('error')
 
-      if (error.message.includes('quota')) {
-        setCurrentTask('API quota exceeded! Create new key at aistudio.google.com')
-      } else if (error.message.includes('API key')) {
-        setCurrentTask('Invalid API key! Check .env file.')
+      if (error.message === 'API_KEY_MISSING') {
+        setCurrentTask('❌ API key missing! .env madhe VITE_GEMINI_API_KEY tak.')
+      } else if (error.message?.includes('quota') || error.message?.includes('429')) {
+        setCurrentTask('⚠️ API quota संपली! aistudio.google.com var navi key banv.')
+      } else if (error.message?.includes('404')) {
+        setCurrentTask('❌ Model not found. API key format check kar.')
       } else {
-        setCurrentTask(`Error: ${error.message}`)
+        setCurrentTask(`❌ Error: ${error.message}. Console madhe details bagh.`)
       }
     }
   }
