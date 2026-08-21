@@ -54,6 +54,11 @@ function ResumePreview() {
         </div>
       </div>
 
+      {/* Mobile Scroll Hint */}
+      <div className="resume__scroll-hint">
+        ← Scroll horizontally to see full resume →
+      </div>
+
       {/* Scrollable Preview Container */}
       <div className="resume__scroll-container">
         {/* Resume Paper - A4 Fixed Width */}

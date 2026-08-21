@@ -76,14 +76,34 @@
   transform: translateY(-2px);
 }
 
-/* Scrollable container - mobile sathi */
+/* Scrollable container */
 .resume__scroll-container {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  background: #e8e8e8;
-  padding: 1rem;
+  background: #d0d0d0;
+  padding: 1rem 0.5rem;
   box-sizing: border-box;
+}
+
+/* Mobile scroll hint */
+.resume__scroll-hint {
+  display: none;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #666;
+  padding: 0.4rem;
+  background: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 850px) {
+  .resume__scroll-hint {
+    display: block;
+  }
+  .resume__scroll-container {
+    padding: 0.5rem 0.3rem;
+  }
 }
 
 /* ===== RESUME PAPER - Fixed A4 Width ===== */
