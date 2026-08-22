@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../../context/ResumeContext'
 import { usePDF } from 'react-to-pdf'
-import { Download, Upload } from 'lucide-react'
+import { Download, Upload, Smartphone } from 'lucide-react'
 import './ResumePreview.css'
 
 function ResumePreview() {
@@ -11,11 +11,7 @@ function ResumePreview() {
 
   const { toPDF, targetRef } = usePDF({
     filename: `${personalInfo.fullName || 'resume'}_resume.pdf`,
-    page: {
-      margin: 5,
-      format: 'A4',
-      orientation: 'portrait'
-    }
+    page: { margin: 5, format: 'A4', orientation: 'portrait' }
   })
 
   const handlePhotoUpload = (e) => {
@@ -39,7 +35,7 @@ function ResumePreview() {
         <div className="resume__download-actions">
           <label className="resume__photo-btn">
             <Upload size={16} />
-            Upload Photo
+            Photo
             <input
               type="file"
               accept="image/*"
@@ -48,20 +44,20 @@ function ResumePreview() {
             />
           </label>
           <button className="resume__download-btn" onClick={toPDF}>
-            <Download size={18} />
+            <Download size={16} />
             Download PDF
           </button>
         </div>
       </div>
 
-      {/* Mobile Scroll Hint */}
-      <div className="resume__scroll-hint">
-        ← Scroll horizontally to see full resume →
+      {/* Mobile hint */}
+      <div className="resume__mobile-hint">
+        <Smartphone size={14} />
+        Scroll right to see full resume · Download for best view
       </div>
 
-      {/* Scrollable Preview Container */}
-      <div className="resume__scroll-container">
-        {/* Resume Paper - A4 Fixed Width */}
+      {/* Outer scroll wrapper */}
+      <div className="resume__outer">
         <div ref={targetRef} className="resume__paper">
 
           {/* HEADER */}
@@ -78,15 +74,14 @@ function ResumePreview() {
               )}
             </div>
             <div className="resume__photo-box">
-              {photo ? (
-                <img src={photo} alt="Profile" className="resume__photo-img" />
-              ) : (
-                <div className="resume__photo-empty">Photo</div>
-              )}
+              {photo
+                ? <img src={photo} alt="Profile" className="resume__photo-img" />
+                : <div className="resume__photo-empty">Photo</div>
+              }
             </div>
           </div>
 
-          {/* Contact Row */}
+          {/* Contacts */}
           <div className="resume__contact-row">
             {personalInfo.phone && <span>📞 {personalInfo.phone}</span>}
             {personalInfo.email && <span>✉ {personalInfo.email}</span>}
@@ -109,10 +104,9 @@ function ResumePreview() {
           {/* TWO COLUMNS */}
           <div className="resume__two-col">
 
-            {/* LEFT COLUMN */}
+            {/* LEFT */}
             <div className="resume__col-left">
 
-              {/* Programming Languages */}
               {skills.programmingLangs && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">PROGRAMMING LANGUAGES</div>
@@ -122,10 +116,10 @@ function ResumePreview() {
                       const l = lang.trim().toLowerCase()
                       const emoji =
                         l.includes('c++') ? '⊕' :
-                          l.includes('java') && !l.includes('script') ? '☕' :
-                            l.includes('python') ? '🐍' :
-                              l.includes('html') ? '🌐' :
-                                l.includes('css') ? '🎨' :
+                          l.includes('python') ? '🐍' :
+                            l.includes('html') ? '🌐' :
+                              l.includes('css') ? '🎨' :
+                                l.includes('java') && !l.includes('script') ? '☕' :
                                   l.includes('javascript') || l.includes('js') ? '⚡' : '◉'
                       return (
                         <div key={i} className="resume__lang-item">
@@ -138,7 +132,6 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Technical Skills */}
               {skills.technical && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">TECHNICAL SKILLS</div>
@@ -151,7 +144,6 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Tools */}
               {skills.tools && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">TOOLS & TECHNOLOGIES</div>
@@ -164,7 +156,6 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Education */}
               {education.some(e => e.institution) && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">ACADEMIC QUALIFICATIONS</div>
@@ -175,61 +166,53 @@ function ResumePreview() {
                         <th>Degree</th>
                         <th>Institution</th>
                         <th>Year</th>
-                        <th>%/CGPA</th>
+                        <th>CGPA</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {education.map(edu => (
-                        edu.institution && (
-                          <tr key={edu.id}>
-                            <td>{edu.degree?.includes('(')
-                              ? edu.degree.split('(')[0].trim()
-                              : edu.degree}
-                            </td>
-                            <td>{edu.institution}</td>
-                            <td>{edu.endYear || edu.startYear}</td>
-                            <td>{edu.cgpa || '-'}</td>
-                          </tr>
-                        )
+                      {education.map(edu => edu.institution && (
+                        <tr key={edu.id}>
+                          <td>{edu.degree?.includes('(')
+                            ? edu.degree.split('(')[0].trim()
+                            : edu.degree}
+                          </td>
+                          <td>{edu.institution}</td>
+                          <td>{edu.endYear || edu.startYear}</td>
+                          <td>{edu.cgpa || '-'}</td>
+                        </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
               )}
 
-              {/* Experience */}
               {experience.some(e => e.company) && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">INTERNSHIP / EXPERIENCE</div>
                   <div className="resume__thin-line"></div>
-                  {experience.map(exp => (
-                    exp.company && (
-                      <div key={exp.id} className="resume__exp-block">
-                        <div className="resume__exp-role">{exp.role}</div>
-                        <div className="resume__exp-co">
-                          {exp.company}
-                          {exp.type && ` | ${exp.type}`}
-                          {exp.location && ` | ${exp.location}`}
-                        </div>
-                        <div className="resume__exp-dates">
-                          {exp.startDate} — {exp.isCurrently ? 'Present' : exp.endDate}
-                        </div>
-                        {exp.description && (
-                          <ul className="resume__bullet-list">
-                            {exp.description.split('\n')
-                              .filter(l => l.trim())
-                              .map((line, i) => (
-                                <li key={i}>{line.replace(/^[•\-]\s*/, '')}</li>
-                              ))}
-                          </ul>
-                        )}
+                  {experience.map(exp => exp.company && (
+                    <div key={exp.id} className="resume__exp-block">
+                      <div className="resume__exp-role">{exp.role}</div>
+                      <div className="resume__exp-co">
+                        {exp.company}
+                        {exp.type && ` | ${exp.type}`}
+                        {exp.location && ` | ${exp.location}`}
                       </div>
-                    )
+                      <div className="resume__exp-dates">
+                        {exp.startDate} — {exp.isCurrently ? 'Present' : exp.endDate}
+                      </div>
+                      {exp.description && (
+                        <ul className="resume__bullet-list">
+                          {exp.description.split('\n').filter(l => l.trim()).map((line, i) => (
+                            <li key={i}>{line.replace(/^[•\-]\s*/, '')}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
 
-              {/* Strengths */}
               {skills.soft && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">STRENGTHS</div>
@@ -242,7 +225,6 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Languages */}
               {skills.languages && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">LANGUAGES KNOWN</div>
@@ -255,23 +237,22 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Hobbies */}
               {skills.hobbies && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">HOBBIES & INTERESTS</div>
                   <div className="resume__thin-line"></div>
                   <ul className="resume__bullet-list">
                     {skills.hobbies.split(',').map((h, i) => {
-                      const hobby = h.trim().toLowerCase()
+                      const hb = h.trim().toLowerCase()
                       const emoji =
-                        hobby.includes('chess') ? '♟️' :
-                          hobby.includes('travel') ? '✈️' :
-                            hobby.includes('music') ? '🎵' :
-                              hobby.includes('cricket') ? '🏏' :
-                                hobby.includes('read') ? '📚' :
-                                  hobby.includes('cod') ? '💻' :
-                                    hobby.includes('photo') ? '📷' :
-                                      hobby.includes('game') ? '🎮' : '⭐'
+                        hb.includes('chess') ? '♟️' :
+                          hb.includes('travel') ? '✈️' :
+                            hb.includes('music') ? '🎵' :
+                              hb.includes('cricket') ? '🏏' :
+                                hb.includes('read') ? '📚' :
+                                  hb.includes('cod') ? '💻' :
+                                    hb.includes('photo') ? '📷' :
+                                      hb.includes('game') ? '🎮' : '⭐'
                       return <li key={i}>{emoji} {h.trim()}</li>
                     })}
                   </ul>
@@ -280,54 +261,44 @@ function ResumePreview() {
 
             </div>
 
-            {/* RIGHT COLUMN */}
+            {/* RIGHT */}
             <div className="resume__col-right">
 
-              {/* Projects */}
               {projects.some(p => p.name) && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">PROJECTS</div>
                   <div className="resume__thin-line"></div>
-                  {projects.map((proj, idx) => (
-                    proj.name && (
-                      <div key={proj.id} className="resume__proj-block">
-                        <div className="resume__proj-name">
-                          {idx + 1}. {proj.name}
-                        </div>
-                        {proj.techStack && (
-                          <div className="resume__proj-stack">
-                            Tech: {proj.techStack}
-                          </div>
-                        )}
-                        {proj.github && (
-                          <div className="resume__proj-link">
-                            GitHub: {proj.github}
-                          </div>
-                        )}
-                        {proj.liveUrl && (
-                          <div className="resume__proj-link">
-                            Live: {proj.liveUrl}
-                          </div>
-                        )}
-                        {proj.description && (
-                          <p className="resume__proj-desc">{proj.description}</p>
-                        )}
-                        {proj.highlights && (
-                          <ul className="resume__bullet-list">
-                            {proj.highlights.split('\n')
-                              .filter(l => l.trim())
-                              .map((line, i) => (
-                                <li key={i}>{line.replace(/^[•\-]\s*/, '')}</li>
-                              ))}
-                          </ul>
-                        )}
+                  {projects.map((proj, idx) => proj.name && (
+                    <div key={proj.id} className="resume__proj-block">
+                      <div className="resume__proj-name">
+                        {idx + 1}. {proj.name}
                       </div>
-                    )
+                      {proj.techStack && (
+                        <div className="resume__proj-stack">
+                          Tech: {proj.techStack}
+                        </div>
+                      )}
+                      {proj.github && (
+                        <div className="resume__proj-link">GitHub: {proj.github}</div>
+                      )}
+                      {proj.liveUrl && (
+                        <div className="resume__proj-link">Live: {proj.liveUrl}</div>
+                      )}
+                      {proj.description && (
+                        <p className="resume__proj-desc">{proj.description}</p>
+                      )}
+                      {proj.highlights && (
+                        <ul className="resume__bullet-list">
+                          {proj.highlights.split('\n').filter(l => l.trim()).map((line, i) => (
+                            <li key={i}>{line.replace(/^[•\-]\s*/, '')}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
 
-              {/* Certificates */}
               {skills.certificates && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">CERTIFICATES & COURSES</div>
@@ -340,17 +311,14 @@ function ResumePreview() {
                 </div>
               )}
 
-              {/* Achievements */}
               {education.some(e => e.achievements) && (
                 <div className="resume__col-section">
                   <div className="resume__sec-title">ACHIEVEMENTS</div>
                   <div className="resume__thin-line"></div>
                   <ul className="resume__bullet-list">
-                    {education
-                      .filter(e => e.achievements)
-                      .map(e => (
-                        <li key={e.id}>✦ {e.achievements}</li>
-                      ))}
+                    {education.filter(e => e.achievements).map(e => (
+                      <li key={e.id}>✦ {e.achievements}</li>
+                    ))}
                   </ul>
                 </div>
               )}
@@ -361,15 +329,10 @@ function ResumePreview() {
           {/* DECLARATION */}
           <div className="resume__thick-line"></div>
           <div className="resume__declare">
-            <p>
-              I hereby declare that the information provided above is
-              true and correct to the best of my knowledge and belief.
-            </p>
+            <p>I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.</p>
             <div className="resume__sign-area">
               <div className="resume__sign-line"></div>
-              <p className="resume__sign-name">
-                {personalInfo.fullName || 'Name'}
-              </p>
+              <p className="resume__sign-name">{personalInfo.fullName || 'Name'}</p>
               <p className="resume__sign-label">(Signature)</p>
             </div>
           </div>
