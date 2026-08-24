@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../../context/ResumeContext'
 import { usePDF } from 'react-to-pdf'
-import { Download, Upload, Smartphone } from 'lucide-react'
+import { Download, Upload } from 'lucide-react'
 import './ResumePreview.css'
 
 function ResumePreview() {
@@ -11,7 +11,15 @@ function ResumePreview() {
 
   const { toPDF, targetRef } = usePDF({
     filename: `${personalInfo.fullName || 'resume'}_resume.pdf`,
-    page: { margin: 5, format: 'A4', orientation: 'portrait' }
+    page: {
+      format: 'A4',
+      orientation: 'portrait',
+      margin: 10
+    },
+    canvas: {
+      mimeType: 'image/png',
+      qualityRatio: 1
+    }
   })
 
   const handlePhotoUpload = (e) => {
@@ -30,12 +38,12 @@ function ResumePreview() {
       <div className="resume__download-bar">
         <div className="resume__download-info">
           <span>✅ Your resume is ready!</span>
-          <p>Upload photo and download as PDF</p>
+          <p>Upload photo then download PDF</p>
         </div>
         <div className="resume__download-actions">
           <label className="resume__photo-btn">
             <Upload size={16} />
-            Photo
+            Upload Photo
             <input
               type="file"
               accept="image/*"
@@ -52,13 +60,21 @@ function ResumePreview() {
 
       {/* Mobile hint */}
       <div className="resume__mobile-hint">
-        <Smartphone size={14} />
-        Scroll right to see full resume · Download for best view
+        📱 Scroll right to view full resume • Download for best quality
       </div>
 
-      {/* Outer scroll wrapper */}
+      {/* Scroll container */}
       <div className="resume__outer">
-        <div ref={targetRef} className="resume__paper">
+
+        {/* Resume Paper */}
+        <div
+          ref={targetRef}
+          className="resume__paper"
+          style={{
+            background: '#ffffff',
+            backgroundColor: '#ffffff'
+          }}
+        >
 
           {/* HEADER */}
           <div className="resume__header-box">
@@ -104,7 +120,7 @@ function ResumePreview() {
           {/* TWO COLUMNS */}
           <div className="resume__two-col">
 
-            {/* LEFT */}
+            {/* LEFT COLUMN */}
             <div className="resume__col-left">
 
               {skills.programmingLangs && (
@@ -261,7 +277,7 @@ function ResumePreview() {
 
             </div>
 
-            {/* RIGHT */}
+            {/* RIGHT COLUMN */}
             <div className="resume__col-right">
 
               {projects.some(p => p.name) && (
@@ -274,9 +290,7 @@ function ResumePreview() {
                         {idx + 1}. {proj.name}
                       </div>
                       {proj.techStack && (
-                        <div className="resume__proj-stack">
-                          Tech: {proj.techStack}
-                        </div>
+                        <div className="resume__proj-stack">Tech: {proj.techStack}</div>
                       )}
                       {proj.github && (
                         <div className="resume__proj-link">GitHub: {proj.github}</div>

@@ -1,5 +1,6 @@
 .resume__wrapper {
   width: 100%;
+  background: white;
 }
 
 /* Download Bar */
@@ -29,7 +30,6 @@
 .resume__download-actions {
   display: flex;
   gap: 0.6rem;
-  align-items: center;
 }
 
 .resume__photo-btn {
@@ -39,7 +39,7 @@
   background: white;
   color: #6C63FF;
   border: 2px solid #6C63FF;
-  padding: 0.5rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -60,7 +60,7 @@
   background: linear-gradient(135deg, #6C63FF, #8B80FF);
   color: white;
   border: none;
-  padding: 0.5rem 1.1rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 8px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -77,48 +77,44 @@
 /* Mobile Hint */
 .resume__mobile-hint {
   display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 0.5rem;
+  text-align: center;
+  padding: 0.4rem;
   background: #FEF3C7;
   color: #92400E;
   font-size: 0.72rem;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  border-bottom: 1px solid #FDE68A;
 }
 
-@media (max-width: 850px) {
-  .resume__mobile-hint {
-    display: flex;
-  }
-}
-
-/* Outer scroll wrapper */
+/* Outer scroll container */
 .resume__outer {
   width: 100%;
+  background: #b8b8b8;
+  padding: 1rem;
+  box-sizing: border-box;
+  /* SINGLE scroll only */
   overflow-x: auto;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
-  background: #c8c8c8;
-  padding: 1rem 0.8rem;
 }
 
-/* RESUME PAPER - Fixed A4 */
+/* Resume Paper */
 .resume__paper {
-  width: 750px;
-  min-width: 750px;
+  width: 740px;
+  min-width: 740px;
   margin: 0 auto;
-  background: white;
-  padding: 1rem 1.4rem;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  padding: 1.2rem 1.5rem;
   font-family: 'Arial', sans-serif;
-  color: #000;
+  color: #000000;
   font-size: 0.7rem;
   line-height: 1.4;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
-/* HEADER */
+/* Header */
 .resume__header-box {
   display: flex;
   justify-content: space-between;
@@ -140,7 +136,7 @@
 }
 
 .resume__degree-tag {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #333;
   font-style: italic;
 }
@@ -214,7 +210,7 @@
 }
 
 .resume__objective-text {
-  font-size: 0.68rem;
+  font-size: 0.67rem;
   color: #222;
   line-height: 1.5;
   text-align: justify;
@@ -238,8 +234,6 @@
   border-left: 1px solid #ccc;
   padding-left: 0.7rem;
 }
-
-/* .resume__col-section {} */
 
 /* Lists */
 .resume__bullet-list {
@@ -289,6 +283,7 @@
   padding: 2px 4px;
   border: 1px solid #ccc;
   color: #222;
+  background: #ffffff;
 }
 
 /* Experience */
@@ -330,12 +325,11 @@
   font-size: 0.63rem;
   color: #333;
   font-style: italic;
-  margin-bottom: 1px;
 }
 
 .resume__proj-link {
   font-size: 0.6rem;
-  color: #555;
+  color: #444;
 }
 
 .resume__proj-desc {
@@ -355,7 +349,7 @@
 }
 
 .resume__declare>p {
-  font-size: 0.63rem;
+  font-size: 0.62rem;
   color: #333;
   max-width: 55%;
   font-style: italic;
@@ -384,31 +378,86 @@
   color: #666;
 }
 
-/* Print */
-@media print {
-  .resume__paper {
-    width: 100% !important;
-    min-width: unset !important;
-    padding: 8mm 10mm !important;
-    font-size: 0.6rem !important;
-    box-shadow: none !important;
-  }
-}
-
-/* Download bar mobile */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
+  .resume__mobile-hint {
+    display: block;
+  }
+
   .resume__download-bar {
     flex-direction: column;
     align-items: stretch;
   }
 
   .resume__download-actions {
-    justify-content: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .resume__photo-btn,
   .resume__download-btn {
-    flex: 1;
     justify-content: center;
   }
+
+  /* Outer — single horizontal scroll */
+  .resume__outer {
+    padding: 0.5rem;
+    /* NO overflow-y change — default rahnel */
+  }
+
+  /* Paper same rahto — horizontal scroll hoईl */
+  .resume__paper {
+    margin: 0;
+    /* width same 740px — scroll via outer */
+  }
+}
+
+/* Print / PDF */
+@media print {
+  .resume__download-bar {
+    display: none;
+  }
+
+  .resume__mobile-hint {
+    display: none;
+  }
+
+  .resume__outer {
+    padding: 0 !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  .resume__paper {
+    width: 100% !important;
+    min-width: unset !important;
+    box-shadow: none !important;
+    padding: 8mm 10mm !important;
+  }
+}
+
+/* ← He BAHER aahe print madhe nahi! */
+.resume__outer {
+  width: 100%;
+  background: #b0b0b0;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.resume__paper {
+  width: 740px;
+  min-width: 740px;
+  margin: 0 auto;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  padding: 1.2rem 1.5rem;
+  font-family: 'Arial', sans-serif;
+  color: #000000;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }

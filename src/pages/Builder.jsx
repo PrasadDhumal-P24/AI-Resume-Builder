@@ -124,8 +124,10 @@
 
 
 import { useState, useEffect } from 'react'
-import { User, GraduationCap, Briefcase,
-         Code, FolderOpen, Eye } from 'lucide-react'
+import {
+  User, GraduationCap, Briefcase,
+  Code, FolderOpen, Eye
+} from 'lucide-react'
 import PersonalInfo from '../Components/Form/PersonalInfo'
 import Education from '../Components/Form/Education'
 import Experience from '../Components/Form/Experience'
@@ -136,16 +138,16 @@ import AIEnhancer from '../Components/Preview/AIEnhancer'
 import './Builder.css'
 
 const STEPS = [
-  { id: 1, label: 'Personal',   icon: User },
-  { id: 2, label: 'Education',  icon: GraduationCap },
+  { id: 1, label: 'Personal', icon: User },
+  { id: 2, label: 'Education', icon: GraduationCap },
   { id: 3, label: 'Experience', icon: Briefcase },
-  { id: 4, label: 'Skills',     icon: Code },
-  { id: 5, label: 'Projects',   icon: FolderOpen },
-  { id: 6, label: 'Preview',    icon: Eye },
+  { id: 4, label: 'Skills', icon: Code },
+  { id: 5, label: 'Projects', icon: FolderOpen },
+  { id: 6, label: 'Preview', icon: Eye },
 ]
 
 function Builder() {
-  // Step pn localStorage madhe save hoto!
+  // localStorage save!
   const [currentStep, setCurrentStep] = useState(() => {
     const saved = localStorage.getItem('resumeai_step')
     return saved ? parseInt(saved) : 1
@@ -177,14 +179,15 @@ function Builder() {
               <h2>🎉 Your Resume is Ready!</h2>
               <p>Use AI to enhance your content, then download as PDF!</p>
             </div>
-            <button className="form__btn form__btn--prev" onClick={goPrev}>
+            <button
+              className="form__btn form__btn--prev"
+              onClick={goPrev}
+            >
               ← Edit Details
             </button>
           </div>
           <AIEnhancer />
-          <div className="preview__paper">
-            <ResumePreview />
-          </div>
+          <ResumePreview />
         </div>
       )
       default: return null
@@ -224,11 +227,11 @@ function Builder() {
         <div className="builder__progress-bar">
           <div
             className="builder__progress-fill"
-            style={{ width: `${((currentStep-1)/(STEPS.length-1))*100}%` }}
+            style={{ width: `${((currentStep - 1) / (STEPS.length - 1)) * 100}%` }}
           />
         </div>
         <p className="builder__progress-text">
-          Step {currentStep} of {STEPS.length} — {STEPS[currentStep-1].label}
+          Step {currentStep} of {STEPS.length} — {STEPS[currentStep - 1].label}
         </p>
       </div>
       <div className="builder__content">

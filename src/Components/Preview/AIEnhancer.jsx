@@ -23,7 +23,7 @@ function AIEnhancer() {
 
     if (!key) {
       setStatus('error')
-      setCurrentTask('❌ API key not found! Check your .env file — VITE_GEMINI_API_KEY chahije.')
+      setCurrentTask('❌ API key not found! Check your .env file — VITE_GEMINI_API_KEY')
       return
     }
 
@@ -74,13 +74,13 @@ function AIEnhancer() {
       setStatus('error')
 
       if (error.message === 'API_KEY_MISSING') {
-        setCurrentTask('❌ API key missing! .env madhe VITE_GEMINI_API_KEY tak.')
+        setCurrentTask('❌ API key not found! Add VITE_GEMINI_API_KEY in Vercel Environment Variables.')
       } else if (error.message?.includes('quota') || error.message?.includes('429')) {
-        setCurrentTask('⚠️ API quota संपली! aistudio.google.com var navi key banv.')
+        setCurrentTask('⚠️ API quota is end! go on aistudio.google.com and create new API Key.')
       } else if (error.message?.includes('404')) {
-        setCurrentTask('❌ Model not found. API key format check kar.')
+        setCurrentTask('❌ Model not found. check API key format.')
       } else {
-        setCurrentTask(`❌ Error: ${error.message}. Console madhe details bagh.`)
+        setCurrentTask(`❌ Error: ${error.message}. check console log details.`)
       }
     }
   }
