@@ -116,7 +116,7 @@ function AIEnhancer() {
               <>
                 <h3>Enhance with AI ✨</h3>
                 <p>
-                  Let Claude AI transform your content into
+                  Let GEMINI AI transform your content into
                   powerful, recruiter-ready language!
                 </p>
               </>
