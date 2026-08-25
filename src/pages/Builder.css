@@ -445,3 +445,9 @@ textarea.form__input {
     padding: 0.8rem !important;
   }
 }
+
+.builder,
+.builder__content,
+.builder__content>div {
+  overflow-x: visible !important;
+}

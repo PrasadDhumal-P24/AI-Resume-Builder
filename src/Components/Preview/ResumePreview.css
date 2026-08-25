@@ -1,6 +1,8 @@
 .resume__wrapper {
   width: 100%;
+  max-width: 100vw;
   background: white;
+  overflow-x: hidden;
 }
 
 /* Download Bar */
@@ -86,22 +88,22 @@
   font-weight: 500;
 }
 
-/* Outer scroll container */
+/* Outer Container */
 .resume__outer {
   width: 100%;
-  background: #b8b8b8;
+  background: #b0b0b0;
   padding: 1rem;
   box-sizing: border-box;
-  /* SINGLE scroll only */
+  display: flex;
+  justify-content: center;
   overflow-x: auto;
-  overflow-y: visible;
-  -webkit-overflow-scrolling: touch;
 }
 
-/* Resume Paper */
+/* Resume Paper - Fixed Responsive issue */
 .resume__paper {
-  width: 740px;
-  min-width: 740px;
+  width: 100%;
+  max-width: 740px;
+  min-width: 0;
   margin: 0 auto;
   background: #ffffff !important;
   background-color: #ffffff !important;
@@ -133,6 +135,7 @@
   letter-spacing: 1.5px;
   color: #000;
   margin-bottom: 0.15rem;
+  word-break: break-word;
 }
 
 .resume__degree-tag {
@@ -174,6 +177,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 0.3rem;
+  word-break: break-word;
 }
 
 .resume__contact-row span {
@@ -247,6 +251,7 @@
   color: #222;
   margin-bottom: 2px;
   line-height: 1.4;
+  word-break: break-word;
 }
 
 /* Lang Grid */
@@ -284,6 +289,7 @@
   border: 1px solid #ccc;
   color: #222;
   background: #ffffff;
+  word-break: break-word;
 }
 
 /* Experience */
@@ -330,6 +336,7 @@
 .resume__proj-link {
   font-size: 0.6rem;
   color: #444;
+  word-break: break-all;
 }
 
 .resume__proj-desc {
@@ -346,9 +353,10 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 0.4rem;
+  gap: 0.5rem;
 }
 
-.resume__declare>p {
+.resume__declare > p {
   font-size: 0.62rem;
   color: #333;
   max-width: 55%;
@@ -358,6 +366,7 @@
 
 .resume__sign-area {
   text-align: center;
+  flex-shrink: 0;
 }
 
 .resume__sign-line {
@@ -378,12 +387,8 @@
   color: #666;
 }
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .resume__mobile-hint {
-    display: block;
-  }
-
   .resume__download-bar {
     flex-direction: column;
     align-items: stretch;
@@ -399,25 +404,30 @@
     justify-content: center;
   }
 
-  /* Outer — single horizontal scroll */
   .resume__outer {
-    padding: 0.5rem;
-    /* NO overflow-y change — default rahnel */
+    padding: 0.4rem;
   }
 
-  /* Paper same rahto — horizontal scroll hoईl */
   .resume__paper {
-    margin: 0;
-    /* width same 740px — scroll via outer */
+    padding: 0.8rem 0.9rem;
+  }
+
+  .resume__two-col {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .resume__col-right {
+    border-left: none;
+    border-top: 1px dashed #ccc;
+    padding-left: 0;
+    padding-top: 0.5rem;
   }
 }
 
 /* Print / PDF */
 @media print {
-  .resume__download-bar {
-    display: none;
-  }
-
+  .resume__download-bar,
   .resume__mobile-hint {
     display: none;
   }
@@ -430,34 +440,8 @@
 
   .resume__paper {
     width: 100% !important;
-    min-width: unset !important;
+    max-width: none !important;
     box-shadow: none !important;
     padding: 8mm 10mm !important;
   }
-}
-
-/* ← He BAHER aahe print madhe nahi! */
-.resume__outer {
-  width: 100%;
-  background: #b0b0b0;
-  padding: 0.8rem;
-  box-sizing: border-box;
-  overflow-x: auto;
-  overflow-y: visible;
-  -webkit-overflow-scrolling: touch;
-}
-
-.resume__paper {
-  width: 740px;
-  min-width: 740px;
-  margin: 0 auto;
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  padding: 1.2rem 1.5rem;
-  font-family: 'Arial', sans-serif;
-  color: #000000;
-  font-size: 0.7rem;
-  line-height: 1.4;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
 }
