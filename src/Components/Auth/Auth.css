@@ -42,9 +42,20 @@
 }
 
 /* Left */
-.auth__left {
+/* .auth__left {
   flex: 1;
   background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+} */
+
+/* Auth left side gradient — Red theme */
+.auth__left {
+  flex: 1;
+  background: linear-gradient(135deg, #1A0A0A 0%, #2D1515 100%);
   padding: 3rem;
   display: flex;
   flex-direction: column;

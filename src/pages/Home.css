@@ -324,9 +324,14 @@
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
 }
-.feature__card--highlighted {
+/* .feature__card--highlighted {
   background: linear-gradient(135deg, var(--primary), #8B80FF);
   color: white;
+  border: none;
+} */
+
+.feature__card--highlighted {
+  background: linear-gradient(135deg, #E82D2D, #C41E1E);
   border: none;
 }
 .feature__card--highlighted h3,
