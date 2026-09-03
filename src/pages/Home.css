@@ -445,3 +445,253 @@
   opacity: 0.4;
   margin-bottom: 1rem;
 }
+
+/* ===== MOBILE RESPONSIVE - COMPLETE FIX ===== */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero {
+    flex-direction: column !important;
+    padding: 5rem 1.2rem 2rem !important;
+    text-align: center !important;
+    min-height: auto !important;
+    gap: 2rem !important;
+  }
+
+  .hero__content {
+    max-width: 100% !important;
+  }
+
+  .hero__title {
+    font-size: 2rem !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem !important;
+  }
+
+  .hero__buttons {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  .hero__btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .hero__stats {
+    justify-content: center !important;
+  }
+
+  .hero__mockup {
+    max-width: 100% !important;
+    display: none !important;
+  }
+
+  .hero__blob--1,
+  .hero__blob--2 {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  /* Features */
+  .features {
+    padding: 3rem 1.2rem !important;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .features__title {
+    font-size: 1.7rem !important;
+  }
+
+  /* How It Works */
+  .how {
+    padding: 3rem 1.2rem !important;
+  }
+
+  .how__steps {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .how__arrow {
+    transform: rotate(90deg) !important;
+  }
+
+  .how__step {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Header */
+  .header {
+    padding: 0 1rem !important;
+  }
+
+  .header__nav { display: none !important; }
+
+  .header__actions {
+    gap: 0.4rem !important;
+  }
+
+  .btn {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Auth */
+  .auth__container {
+    flex-direction: column !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .auth__left {
+    padding: 1.5rem !important;
+    min-height: 180px !important;
+  }
+
+  .auth__left h2 {
+    font-size: 1.3rem !important;
+  }
+
+  .auth__right {
+    width: 100% !important;
+    padding: 1.5rem 1.2rem !important;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    padding: 1rem !important;
+  }
+
+  .dashboard__hero {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1.2rem !important;
+    text-align: center !important;
+  }
+
+  .dashboard__welcome {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .dashboard__welcome h1 {
+    font-size: 1.1rem !important;
+  }
+
+  .dashboard__stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Builder */
+  .builder {
+    padding: 0.8rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .builder__progress {
+    padding: 0.8rem !important;
+  }
+
+  .builder__step {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .builder__step-label {
+    font-size: 0.55rem !important;
+  }
+
+  /* Form */
+  .form__section {
+    padding: 1.2rem 1rem !important;
+  }
+
+  .form__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form__grid--full {
+    grid-column: 1 !important;
+  }
+
+  .form__navigation {
+    padding: 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .form__btn {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* Preview section */
+  .preview__header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* AI Enhancer */
+  .ai-enhancer {
+    padding: 1rem !important;
+  }
+
+  .ai-enhancer__features {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Feedback */
+  .feedback,
+  .feedback-sec {
+    padding: 3rem 1.2rem !important;
+  }
+
+  .feedback__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .feedback__form-wrap {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .feedback__form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 1.7rem !important;
+  }
+
+  .hero__badge {
+    font-size: 0.72rem !important;
+    padding: 5px 10px !important;
+  }
+
+  .builder__step-label {
+    display: none !important;
+  }
+
+  .dashboard__stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .auth__left {
+    display: none !important;
+  }
+
+  .features__title {
+    font-size: 1.5rem !important;
+  }
+}
